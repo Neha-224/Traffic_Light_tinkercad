@@ -1,0 +1,169 @@
+int pulse_duration, distance;
+void setup()
+{
+    Serial.begin(9600);
+  for ( int i=2 ; i<=11 ; i++)
+  {
+    
+  pinMode(i, OUTPUT);
+  pinMode(A1, OUTPUT);
+  pinMode(A2, OUTPUT);
+  }
+}
+
+  //1st green HIGH
+ void green_1()
+    {
+  analogWrite(A2, 255);
+  digitalWrite(10, HIGH);
+  digitalWrite(7, HIGH);
+  digitalWrite(4, HIGH);
+  delay(3000);
+  analogWrite(A2, 0);
+    }
+ void yellow_1()
+  {
+  digitalWrite(11, HIGH);
+  delay(2000);
+  digitalWrite(11, LOW);
+  digitalWrite(10, LOW);
+  digitalWrite(7, LOW);
+  digitalWrite(4, LOW);
+  }
+  
+  //2ND GREEN
+ void green_2()
+  {
+  digitalWrite(9, HIGH);
+  analogWrite(A1, 255);
+  digitalWrite(7, HIGH);
+  digitalWrite(4, HIGH);
+  delay(3000);
+  digitalWrite(9, LOW);
+  }
+  
+  void yellow_2()
+  {
+  digitalWrite(8, HIGH);
+  delay(2000);
+  digitalWrite(8, LOW);
+  analogWrite(A1, 0);
+  digitalWrite(7, LOW);
+  digitalWrite(4, LOW);
+  }
+  
+  //3RD GREEN
+ void green_3()
+  {
+  digitalWrite(6, HIGH);
+  analogWrite(A1, 255);
+  digitalWrite(10, HIGH);
+  digitalWrite(4, HIGH);
+  delay(3000);
+  digitalWrite(6, LOW);
+  }
+  
+ void yellow_3()
+ {
+  digitalWrite(5, HIGH);
+  delay(2000);
+  digitalWrite(5, LOW);
+  analogWrite(A1, 0);
+  digitalWrite(10, LOW);
+  digitalWrite(4, LOW);
+ }
+  
+  //4TH GREEN
+ void green_4()
+ {
+  digitalWrite(3, HIGH);
+  analogWrite(A1, 255);
+  digitalWrite(7, HIGH);
+  digitalWrite(10, HIGH);
+  delay(3000);
+  digitalWrite(3, LOW);
+ }
+  
+ void yellow_4()
+ {
+  digitalWrite(2, HIGH);
+  delay(2000);
+  digitalWrite(2, LOW);
+  analogWrite(A1, 0);
+  digitalWrite(7, LOW);
+  digitalWrite(10, LOW);
+ }
+
+
+void loop()
+{
+  green_1();
+  pinMode(13, OUTPUT);
+  digitalWrite(13, LOW);
+  delayMicroseconds(2);
+  digitalWrite(13, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(13, LOW);
+
+  pinMode(13, INPUT);
+  pulse_duration = pulseIn(13, HIGH);
+  int distance=(pulse_duration/2)/29.1;
+
+  if(distance < 50){
+  	analogWrite(A1, 255);
+  }
+  else {
+  	analogWrite(A1, 0);
+  }
+  
+  
+  yellow_1();
+  delay(2000);
+  
+  green_2();
+  delay(2000);
+  
+  yellow_2();
+  delay(2000);
+  
+  green_3();
+  delay(2000);
+  
+  yellow_3();
+  delay(2000);
+  
+  green_4();
+  delay(2000);
+  
+  yellow_4();
+  delay(2000);
+  
+  
+}
+/*
+int ledPin = 13;
+int inPin = 7;
+
+
+void loop()
+{
+  pinMode(inPin, OUTPUT);
+  digitalWrite(inPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(inPin, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(inPin, LOW);
+
+  pinMode(inPin, INPUT);
+  pulse_duration = pulseIn(inPin, HIGH);
+  int distance=(pulse_duration/2)/29.1;
+
+  if(distance < 100){
+  	digitalWrite(13, HIGH);
+  }
+  else {
+  	digitalWrite(13, LOW);
+  }
+}*/
+
+  
